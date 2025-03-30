@@ -1,0 +1,29 @@
+<!-- filepath: treehole_app/src/templates/create_post.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Create Post</title>
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="container">
+        <h1>Create a New Post</h1>
+        <form method="POST" action="{{ url_for('routes.create_post') }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.content.label }}<br>
+                {{ form.content(rows="5", cols="50") }}<br>
+                {% for error in form.content.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                <input type="submit" value="Post">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
